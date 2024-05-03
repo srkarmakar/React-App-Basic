@@ -10,19 +10,19 @@ export default function TextForm(props) {
     const changeToUppercase = () => {
         const newtext = text.toUpperCase();
         setText(newtext);
-        props.showAlert("Converted to Uppercase","success");
+        props.showAlert("Converted to Uppercase", "success");
     }
     //Convert to lowercase
     const changeToLowercase = () => {
         const newtext = text.toLowerCase();
         setText(newtext);
-        props.showAlert("Converted to Lowercase","success");
+        props.showAlert("Converted to Lowercase", "success");
     }
     //Convert to lowercase
     const clearAll = () => {
         const newtext = "";
         setText(newtext);
-        props.showAlert("TextArea Blanked","success");
+        props.showAlert("TextArea Blanked", "success");
     }
     //Theme change
     // const changeColor = () => {
@@ -59,12 +59,21 @@ export default function TextForm(props) {
             <button type="button" className="btn btn-primary m-2" onClick={changeToUppercase}>To Uppercase</button>
             <button type="button" className="btn btn-primary m-2" onClick={changeToLowercase}>To Lowercase</button>
             <button type="button" className="btn btn-primary m-2" onClick={clearAll}>Clear All</button>
-            <button type="button" className="btn btn-primary m-2" onClick={listen}>Text-Speech</button>
-            <button type="button" className="btn btn-primary m-2">Speech-Text</button>
+            <button type="button" className="btn btn-primary m-2" disabled >Copy to Clipboard</button>
+            <button type="button" className="btn btn-primary m-2" disabled onClick={listen}>Text-Speech</button>
+            <button type="button" className="btn btn-primary m-2" disabled >Speech-Text</button>
+            <button type="button" className="btn btn-primary m-2" disabled >Convert to base64</button>
+            <button type="button" className="btn btn-primary m-2" disabled >Convert to base58</button>
+            <button type="button" className="btn btn-primary m-2" disabled >Extract Link</button>
+            <button type="button" className="btn btn-primary m-2" disabled >Extract Number</button>
+            <button type="button" className="btn btn-primary m-2" disabled >Extract Text</button>
+            <button type="button" className="btn btn-primary m-2" disabled >Remove Whitespace</button>
+            <button type="button" className="btn btn-primary m-2" disabled >Remove Special Characters</button>
             <div className='container'>
+                <h2>Preview</h2>
                 <p>{text}</p>
-                <p>Number of Words - {text.split(' ').length} And Number of Characters - {text.length}</p>
-                <p>Estimated Time to read - {0.08 * text.split(' ').length} minutes</p>
+                <p>Number of Words - {text.split(/\s+/).filter(() => { return text.split('').length !== 0 }).length} And Number of Characters - {text.length}</p>
+                <p>Estimated Time to read - {0.08 * text.split(' ').filter(() => { return text.split('').length !== 0 }).length} minutes</p>
 
                 {/* <button type="button" className="btn btn-primary mx-2" onClick={changeColor}>Change Theme</button> */}
             </div>
