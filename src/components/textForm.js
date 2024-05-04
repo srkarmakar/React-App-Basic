@@ -24,6 +24,13 @@ export default function TextForm(props) {
         setText(newtext);
         props.showAlert("TextArea Blanked", "success");
     }
+
+    const copyToClipboard = () => {
+        var copiedText = document.getElementById('myTextArea');
+        copiedText.select();
+        navigator.clipboard.writeText(copiedText.value)
+    }
+
     //Theme change
     // const changeColor = () => {
     //     if (myStyle.backgroundColor === 'white') {
@@ -38,6 +45,7 @@ export default function TextForm(props) {
     //         })
     //     }
     // }
+
     //Text to Speech
     const listen = () => {
         const speech = new SpeechSynthesisUtterance();
@@ -59,8 +67,8 @@ export default function TextForm(props) {
             <button type="button" className="btn btn-primary m-2" onClick={changeToUppercase}>To Uppercase</button>
             <button type="button" className="btn btn-primary m-2" onClick={changeToLowercase}>To Lowercase</button>
             <button type="button" className="btn btn-primary m-2" onClick={clearAll}>Clear All</button>
-            <button type="button" className="btn btn-primary m-2" disabled >Copy to Clipboard</button>
-            <button type="button" className="btn btn-primary m-2" disabled onClick={listen}>Text-Speech</button>
+            <button type="button" className="btn btn-primary m-2" onClick={copyToClipboard} >Copy to Clipboard</button>
+            <button type="button" className="btn btn-primary m-2" onClick={listen}>Text-Speech</button>
             <button type="button" className="btn btn-primary m-2" disabled >Speech-Text</button>
             <button type="button" className="btn btn-primary m-2" disabled >Convert to base64</button>
             <button type="button" className="btn btn-primary m-2" disabled >Convert to base58</button>
